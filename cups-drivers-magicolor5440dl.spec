@@ -3,12 +3,13 @@
 Summary:	Cups Driver for KONICA MINOLTA magicolor 5440 DL
 Name:		cups-drivers-%{rname}
 Version:	1.2.1
-Release:	%mkrel 13
+Release:	13
 License:	GPL
 Group:		System/Printing
 URL:		http://printer.konicaminolta.net/
 Source0:	magicolor5440DL-%{version}.tar.gz
 Patch0:		magicolor2430DL-shared_system_libs.diff
+Patch1:		magicolor5540-automake-1.13.patch
 BuildRequires:	automake
 BuildRequires:	cups-devel
 BuildRequires:	jbig-devel
@@ -17,7 +18,6 @@ Requires:	cups
 Conflicts:	cups-drivers = 2007
 Conflicts:	printer-utils = 2007
 Conflicts:	printer-filters = 2007
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 This package contains KONICA MINOLTA CUPS LavaFlow stream(PCL-like) filter
@@ -32,6 +32,7 @@ This package contains CUPS drivers (PPD) for the following printers:
 
 %setup -q -n magicolor5440DL-%{version}
 %patch0 -p0
+%patch1 -p1 -b .am113~
 
 # Fix copy of CUPS headers in kmlf.h
 perl -p -i -e 's:\bcups_strlcpy:_cups_strlcpy:g' src/kmlf.h

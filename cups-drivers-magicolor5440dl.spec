@@ -3,7 +3,7 @@
 Summary:	Cups Driver for KONICA MINOLTA magicolor 5440 DL
 Name:		cups-drivers-%{rname}
 Version:	1.2.1
-Release:	14
+Release:	15
 License:	GPLv2
 Group:		System/Printing
 Url:		http://printer.konicaminolta.net/

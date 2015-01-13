@@ -13,7 +13,7 @@ Patch1:		magicolor5540-automake-1.13.patch
 
 BuildRequires:	cups-devel
 BuildRequires:	jbig-devel
-BuildRequires:	pkgconfig(lcms)
+BuildRequires:	pkgconfig(lcms2)
 Requires:	cups
 
 %description
@@ -43,7 +43,7 @@ rm -f configure
 autoreconf -fi
 
 %build
-%configure2_5x
+%configure
 
 %make
 

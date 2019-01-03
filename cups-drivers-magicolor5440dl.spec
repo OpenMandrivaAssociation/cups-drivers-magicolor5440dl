@@ -3,18 +3,18 @@
 Summary:	Cups Driver for KONICA MINOLTA magicolor 5440 DL
 Name:		cups-drivers-%{rname}
 Version:	1.2.1
-Release:	26
+Release:	27
 License:	GPLv2
 Group:		System/Printing
 Url:		http://printer.konicaminolta.net/
 Source0:	magicolor5440DL-%{version}.tar.gz
-Patch0:		magicolor2430DL-shared_system_libs.diff
-Patch1:		magicolor5540-automake-1.13.patch
-Patch2:		magicolor-cups-2.2.patch
-
+Patch0:		magicolor5440DL-shared_system_libs.diff
+Patch1:		magicolor5440DL-1.2.1-automake-1.13.patch
+Patch2:		magicolor5440DL-1.2.1-cups-2.2.patch
+Patch3:		magicolor5440DL-lcms2.patch
 BuildRequires:	cups-devel
 BuildRequires:	jbig-devel
-BuildRequires:	pkgconfig(lcms)
+BuildRequires:	pkgconfig(lcms2)
 Requires:	cups
 
 %description
@@ -29,8 +29,9 @@ This package contains CUPS drivers (PPD) for the following printers:
 %prep
 %setup -qn magicolor5440DL-%{version}
 %patch0 -p0
-%patch1 -p1 -b .am113~
-%patch2 -p1 -b .p2~
+%patch1 -p1 -b .automake-1_13
+%patch2 -p1 -b .cups2_2
+%patch3 -p1 -b .lcms2
 
 # Fix copy of CUPS headers in kmlf.h
 perl -pi -e 's:\bcups_strlcpy:_cups_strlcpy:g' src/kmlf.h
@@ -46,15 +47,13 @@ autoreconf -fi
 
 %build
 %configure
-
-%make
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 %files
 %doc AUTHORS COPYING ChangeLog
 %{_prefix}/lib/cups/filter/rastertokm5440dl
 %{_datadir}/KONICA_MINOLTA/mc5440DL
 %{_datadir}/cups/model/KONICA_MINOLTA/km5440dl.ppd*
-

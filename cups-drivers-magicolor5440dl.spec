@@ -6,7 +6,7 @@ Version:	1.2.1
 Release:	29
 License:	GPLv2
 Group:		System/Printing
-Url:		http://printer.konicaminolta.net/
+Url:		https://printer.konicaminolta.net/
 Source0:	magicolor5440DL-%{version}.tar.gz
 Patch0:		magicolor5440DL-shared_system_libs.diff
 Patch1:		magicolor5440DL-1.2.1-automake-1.13.patch
